@@ -30,6 +30,13 @@
  *
  */
 function getFizzBuzz(num) {
+    if ( num % 3 === 0 && num % 5 === 0){
+        return 'FizzBuzz';
+       } else if ( num % 3 === 0) {
+            return 'Fizz';
+              } else if ( num % 5 === 0) {
+                  return 'Buzz';
+              } else return num;
     throw new Error('Not implemented');
 }
 
@@ -64,6 +71,11 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
+    let sum = 0;
+	for (let i = n1; i <= n2; i += 1) {
+		sum += i;
+	}
+	return sum;
     throw new Error('Not implemented');
 }
 
@@ -204,6 +216,24 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+    var bracket1;
+	var bracket2;
+	var num1;
+	var num2;
+	if (isStartIncluded) {
+		bracket1 = '[';
+	} else bracket1 = '(';
+	if (isEndIncluded) {
+		bracket2 = ']';
+	} else bracket2 = ')';
+	if (a > b) {
+		num1 = b;
+		num2 = a;
+	} else {
+	    num1 = a;
+		num2 = b;
+	}
+	return `${bracket1}${num1}, ${num2}${bracket2}`;
     throw new Error('Not implemented');
 }
 
@@ -320,22 +350,19 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    const map = {
-        '(': ')',
-        '[': ']',
-        '{': '}',
-    };
-    const closing = Object.values(map);
-    const stack = [];
-
-    for (let char of str) {
-        if (map[char]) {
-            stack.push(char);
-        } else if (closing.includes(char) && char !== map[stack.pop()]) {
-            return false;
-        }
-    }
-    return !stack.length;
+    let arr = [];
+    for (let i = 0; i < str.length; i += 1) {
+		if (str[i] === '(' || str[i] === '{' || str[i] === '[' || str[i] === '<') {
+			arr.push(str[i]);
+		} else {
+		    let buff = arr.pop();
+			if (!((str[i] === ']' && buff === '[')|| (str[i] === '}' && buff === '{') || (str[i] === ')' && buff === '(')|| (str[i] === '>' && buff === '<'))) {
+                return false
+            }
+		}
+	}
+	if (arr.length === 0) return true;
+	return false;
     throw new Error('Not implemented');
 }
 

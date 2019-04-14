@@ -646,31 +646,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-	// let mass = [];
-	// let array = arr.map((elem1) => {
-	// 	if (indexes.length === 1) {
-	// 		if (indexes[0] === elem1) {
-	// 			console.log('arr = ' + arr + '. indexes = ' + indexes + ' .elem1 = ' + elem1)
-	// 			mass.push(elem1);
-	// 		}
-	// 	}
-	// 	if (indexes.length > 1) {
-	// 		elem1.map((elem2) => {
-	// 			if (indexes.length > 2) {
-	// 				elem2.map((elem3) => {
-	// 					if (indexes[2] === elem3) {
-	// 						mass.push(elem3);
-	// 					}
-	// 				});
-	// 			}
-	// 			if(indexes[1] === elem2) {
-	// 				mass.push(elem2);
-	// 			}
-	// 		});
-	// 	}
-	// });
-	// console.log(array)
-	// return mass[0];
+	return indexes.reduce((prev, current) => prev = prev[current], arr);
   throw new Error('Not implemented');
 }
 
@@ -694,27 +670,19 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-	if (arr.length = 2) {
-		return arr.reverse();
+	let middle = 0;
+	let head = [];
+	let tail = [];
+	if ( arr.length % 2 === 0) {
+		head = arr.slice(0, Math.floor(arr.length/2));
+		tail = arr.slice(Math.floor(arr.length/2), arr.length);
+		return tail.concat(head);
+	} else {
+		head = arr.slice(0, Math.round(arr.length/2) - 1); 
+		middle = arr.slice(Math.round(arr.length/2) - 1, Math.round(arr.length/2));
+		tail = arr.slice(Math.round(arr.length/2), arr.length);
+		return tail.concat(middle, head);
 	}
-	if (arr.length > 2) {
-		if (arr.length % 2 === 0) {
-			let buff = [];
-			buff = arr.splice(0,arr.length/2);
-			return arr.concat(buff);
-		}
-		if (arr.length % 2 !== 0) {
-			let tail = [];
-			let head = [];
-			console.log(arr)
-			head = arr.splice(0, parseInt(arr.length/2)-1 );
-			tail = arr.splice(parseInt(arr.length/2)+1, arr.length);
-			arr.concat(head);
-			arr.unshift(...tail);
-			return arr;
-		}
-	}
-	return arr;
   throw new Error('Not implemented');
 }
 
