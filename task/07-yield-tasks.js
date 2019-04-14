@@ -46,7 +46,7 @@ function* get99BottlesOfBeer() {
  * @return {Iterable.<number>}
  *
  */
-function* getFibonacciSequence() {
+function* getFibonacciSequence(num) {
     throw new Error('Not implemented');
 }
 

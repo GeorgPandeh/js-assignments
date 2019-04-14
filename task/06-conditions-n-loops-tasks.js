@@ -171,6 +171,13 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charAt(i);
+        if (str.indexOf(c) == i && str.indexOf(c, i + 1) == -1) {
+          return c;
+        }
+      }
+      return null;
     throw new Error('Not implemented');
 }
 
@@ -214,6 +221,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
+    return str.split('').reverse().join('');
     throw new Error('Not implemented');
 }
 
@@ -231,6 +239,7 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
+    return num.toString().split('').reverse().join('');
     throw new Error('Not implemented');
 }
 
@@ -275,6 +284,16 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
+    let z = num.toString();
+    let i = 0;
+    let y = 0;
+    if (z.length === 1) {
+        return +z;
+    }
+    for (i = 0; i < z.length; i++) {
+        y += +z[i];
+    }
+    return getDigitalRoot(y);
     throw new Error('Not implemented');
 }
 
@@ -301,6 +320,22 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
+    const map = {
+        '(': ')',
+        '[': ']',
+        '{': '}',
+    };
+    const closing = Object.values(map);
+    const stack = [];
+
+    for (let char of str) {
+        if (map[char]) {
+            stack.push(char);
+        } else if (closing.includes(char) && char !== map[stack.pop()]) {
+            return false;
+        }
+    }
+    return !stack.length;
     throw new Error('Not implemented');
 }
 

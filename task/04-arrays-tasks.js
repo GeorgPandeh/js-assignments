@@ -694,27 +694,27 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-	// if (arr.length = 2) {
-	// 	return arr.reverse();
-	// }
-	// if (arr.length > 2) {
-	// 	if (arr.length % 2 === 0) {
-	// 		let buff = [];
-	// 		buff = arr.splice(0,arr.length/2);
-	// 		return arr.concat(buff);
-	// 	}
-	// 	if (arr.length % 2 !== 0) {
-	// 		let tail = [];
-	// 		let head = [];
-	// 		console.log(arr)
-	// 		head = arr.splice(0, parseInt(arr.length/2)-1 );
-	// 		tail = arr.splice(parseInt(arr.length/2)+1, arr.length);
-	// 		arr.concat(head);
-	// 		arr.unshift(...tail);
-	// 		return arr;
-	// 	}
-	// }
-	// return arr;
+	if (arr.length = 2) {
+		return arr.reverse();
+	}
+	if (arr.length > 2) {
+		if (arr.length % 2 === 0) {
+			let buff = [];
+			buff = arr.splice(0,arr.length/2);
+			return arr.concat(buff);
+		}
+		if (arr.length % 2 !== 0) {
+			let tail = [];
+			let head = [];
+			console.log(arr)
+			head = arr.splice(0, parseInt(arr.length/2)-1 );
+			tail = arr.splice(parseInt(arr.length/2)+1, arr.length);
+			arr.concat(head);
+			arr.unshift(...tail);
+			return arr;
+		}
+	}
+	return arr;
   throw new Error('Not implemented');
 }
 
